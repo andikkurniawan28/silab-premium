@@ -5,6 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Device;
+use App\Models\Vendor;
+use App\Models\Category;
+use App\Models\Consumable;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +31,38 @@ class DatabaseSeeder extends Seeder
             ["role_id" => 3, "username" => "manager", "password" => bcrypt("manager"), "name" => ucfirst("manager")],
         ];
         User::insert($user);
+
+        $vendor = [];
+        for($i=1; $i<=20; $i++){
+            $vendor[$i]["name"]     = "Vendor {$i}";
+            $vendor[$i]["email"]    = "vendor{$i}@gmail.com";
+            $vendor[$i]["phone"]    = "08123456789{$i}";
+            $vendor[$i]["user_id"]  = 2;
+        }
+        Vendor::insert($vendor);
+
+        $consumable = [];
+        for($i=1; $i<=20; $i++){
+            $consumable[$i]["name"]         = "Consumable {$i}";
+            $consumable[$i]["vendor_id"]    = $i;
+            $consumable[$i]["user_id"]      = 2;
+        }
+        Consumable::insert($consumable);
+
+        $device = [];
+        for($i=1; $i<=20; $i++){
+            $device[$i]["name"]         = "Device {$i}";
+            $device[$i]["vendor_id"]    = $i;
+            $device[$i]["user_id"]      = 2;
+        }
+        Device::insert($device);
+
+        $category = [];
+        for($i=1; $i<=20; $i++){
+            $category[$i]["name"]       = "Client {$i}";
+            $category[$i]["user_id"]    = 2;
+        }
+        Category::insert($category);
 
     }
 }

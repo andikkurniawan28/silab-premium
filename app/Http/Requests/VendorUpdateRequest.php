@@ -22,7 +22,9 @@ class VendorUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|unique:vendors",
+            "name"  => "required",
+            "email" => "required",
+            "phone" => "required",
         ];
     }
 }

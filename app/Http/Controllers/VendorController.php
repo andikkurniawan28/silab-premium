@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VendorStoreRequest;
 use App\Http\Requests\VendorUpdateRequest;
+use App\Models\ActivityLog;
 use App\Models\GlobalData;
 use App\Models\Vendor;
 // use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class VendorController extends Controller
     public function store(VendorStoreRequest $request)
     {
         Vendor::create($request->all());
+        ActivityLog::write("Create", "vendor", $request->name);
         return redirect()->back()->with("success", "Data has been stored!");
     }
 
@@ -63,7 +65,9 @@ class VendorController extends Controller
      */
     public function update(VendorUpdateRequest $request, $id)
     {
+        $data = Vendor::whereId($id)->get()->last();
         Vendor::whereId($id)->update($request->except(["_token", "_method"]));
+        ActivityLog::write("Update", "vendor", "{$data->name} to {$request->name}, {$data->email} to {$request->email}, {$data->phone} to {$request->phone}");
         return redirect()->back()->with("success", "Data has been updated!");
     }
 
@@ -72,7 +76,9 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
+        $data = Vendor::whereId($id)->get()->last();
         Vendor::whereId($id)->delete();
+        ActivityLog::write("Delete", "vendor", $data->name);
         return redirect()->back()->with("success", "Data has been deleted!");
     }
 }
