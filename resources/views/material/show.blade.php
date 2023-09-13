@@ -1,11 +1,11 @@
 @extends("template.show")
 
 @section("title")
-    {{ ucfirst("indicator") }}
+    {{ ucfirst("material") }}
 @endsection
 
 @section("route-index")
-    {{ route("indicator.index") }}
+    {{ route("material.index") }}
 @endsection
 
 @section("form")
@@ -25,23 +25,9 @@
     ])
 
     @include("components.input1", [
-        "name"      => "unit",
+        "name"      => "category",
         "type"      => "text",
-        "value"     => $data->unit,
-        "modifier"  => "readonly",
-    ])
-
-    @include("components.input1", [
-        "name"      => "device",
-        "type"      => "text",
-        "value"     => $data->device->name,
-        "modifier"  => "readonly",
-    ])
-
-    @include("components.input1", [
-        "name"      => "method",
-        "type"      => "text",
-        "value"     => $data->method->name,
+        "value"     => $data->category->name,
         "modifier"  => "readonly",
     ])
 

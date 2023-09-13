@@ -22,7 +22,7 @@
     <tr>
         <td>{{ $data->id }}</td>
         <td>{{ $data->name }}</td>
-        <td>{{ $data->vendor->name }}</td>
+        <td><a href="{{ route("vendor.show", $data->vendor_id) }}" target="_blank">{{ $data->vendor->name }}</a></td>
         <td>
             <form action="{{ route("device.destroy", $data->id) }}" method="POST">
                 @csrf

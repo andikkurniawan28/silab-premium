@@ -9,6 +9,7 @@ use App\Models\Device;
 use App\Models\Vendor;
 use App\Models\Category;
 use App\Models\Consumable;
+use App\Models\Method;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -56,6 +57,14 @@ class DatabaseSeeder extends Seeder
             $device[$i]["user_id"]      = 2;
         }
         Device::insert($device);
+
+        $method = [];
+        for($i=1; $i<=20; $i++){
+            $method[$i]["name"]         = "Method {$i}";
+            $method[$i]["description"]  = "This is how method {$i} works.";
+            $method[$i]["user_id"]      = 2;
+        }
+        Method::insert($method);
 
         $category = [];
         for($i=1; $i<=20; $i++){

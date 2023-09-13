@@ -27,6 +27,12 @@
 
         @include("layouts.sidebar_list", [
             "icon"  => "grid",
+            "title" => "method",
+            "route" => route("method.index"),
+        ])
+
+        @include("layouts.sidebar_list", [
+            "icon"  => "grid",
             "title" => "category",
             "route" => route("category.index"),
         ])
@@ -35,6 +41,18 @@
             "icon"  => "grid",
             "title" => "indicator",
             "route" => route("indicator.index"),
+        ])
+
+        @include("layouts.sidebar_list", [
+            "icon"  => "grid",
+            "title" => "material",
+            "route" => route("material.index"),
+        ])
+
+        @include("layouts.sidebar_list", [
+            "icon"  => "grid",
+            "title" => "sample",
+            "route" => route("sample.index"),
         ])
 
     </ul>

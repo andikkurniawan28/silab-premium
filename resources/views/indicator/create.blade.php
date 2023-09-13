@@ -38,6 +38,17 @@
             </div>
         </div>
 
+        <div class="row mb-3">
+            <label for="{{ "method" }}" class="col-sm-2 col-form-label">{{ ucfirst("method") }}</label>
+            <div class="col-sm-10">
+                <select name="method_id" class="form-control">
+                    @foreach ($global_data["method"] as $row)
+                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         @include("components.button-submit")
     </form>
 @endsection

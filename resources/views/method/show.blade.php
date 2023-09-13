@@ -1,11 +1,11 @@
 @extends("template.show")
 
 @section("title")
-    {{ ucfirst("indicator") }}
+    {{ ucfirst("method") }}
 @endsection
 
 @section("route-index")
-    {{ route("indicator.index") }}
+    {{ route("method.index") }}
 @endsection
 
 @section("form")
@@ -24,26 +24,12 @@
         "modifier"  => "readonly",
     ])
 
-    @include("components.input1", [
-        "name"      => "unit",
-        "type"      => "text",
-        "value"     => $data->unit,
-        "modifier"  => "readonly",
-    ])
-
-    @include("components.input1", [
-        "name"      => "device",
-        "type"      => "text",
-        "value"     => $data->device->name,
-        "modifier"  => "readonly",
-    ])
-
-    @include("components.input1", [
-        "name"      => "method",
-        "type"      => "text",
-        "value"     => $data->method->name,
-        "modifier"  => "readonly",
-    ])
+    <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label">{{ ucfirst("description") }}</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" name="{{ "description" }}" readonly>{{ $data->description }}</textarea>
+        </div>
+    </div>
 
     @include("components.input1", [
         "name"      => "user",

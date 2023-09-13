@@ -25,6 +25,7 @@ class IndicatorUpdateRequest extends FormRequest
             "name"      => "required",
             "unit"      => "required",
             "device_id" => "required",
+            "method_id" => "required",
             "user_id"   => "required",
         ];
     }

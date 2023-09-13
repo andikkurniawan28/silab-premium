@@ -67,7 +67,7 @@ class IndicatorController extends Controller
     {
         $data = Indicator::whereId($id)->get()->last();
         Indicator::whereId($id)->update($request->except(["_token", "_method"]));
-        ActivityLog::write("Update", "indicator", "{$data->name} to {$request->name}, device {$data->device_id} to {$request->device_id}");
+        ActivityLog::write("Update", "indicator", "{$data->name} to {$request->name}, device {$data->device_id} to {$request->device_id}, method {$data->method_id} to {$request->method_id}");
         return redirect()->back()->with("success", "Data has been updated!");
     }
 

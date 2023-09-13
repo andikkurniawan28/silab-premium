@@ -14,6 +14,7 @@
         <th>{{ ucfirst("name") }}</th>
         <th>{{ ucfirst("unit") }}</th>
         <th>{{ ucfirst("device") }}</th>
+        <th>{{ ucfirst("method") }}</th>
         <th>{{ ucfirst("action") }}</th>
     </tr>
 @endsection
@@ -24,7 +25,8 @@
         <td>{{ $data->id }}</td>
         <td>{{ $data->name }}</td>
         <td>{{ $data->unit }}</td>
-        <td>{{ $data->device->name }}</td>
+        <td><a href="{{ route("device.show", $data->device_id) }}" target="_blank">{{ $data->device->name }}</a></td>
+        <td><a href="{{ route("method.show", $data->method_id) }}" target="_blank">{{ $data->method->name }}</a></td>
         <td>
             <form action="{{ route("indicator.destroy", $data->id) }}" method="POST">
                 @csrf
