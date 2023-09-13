@@ -6,10 +6,13 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Device;
+use App\Models\Method;
+use App\Models\Sample;
 use App\Models\Vendor;
 use App\Models\Category;
+use App\Models\Material;
+use App\Models\Indicator;
 use App\Models\Consumable;
-use App\Models\Method;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -68,10 +71,36 @@ class DatabaseSeeder extends Seeder
 
         $category = [];
         for($i=1; $i<=20; $i++){
-            $category[$i]["name"]       = "Client {$i}";
+            $category[$i]["name"]       = "Category {$i}";
             $category[$i]["user_id"]    = 2;
         }
         Category::insert($category);
+
+        $indicator = [];
+        for($i=1; $i<=20; $i++){
+            $indicator[$i]["name"]      = "Indicator {$i}";
+            $indicator[$i]["unit"]      = "%";
+            $indicator[$i]["device_id"] = $i;
+            $indicator[$i]["method_id"] = $i;
+            $indicator[$i]["user_id"]   = 2;
+        }
+        Indicator::insert($indicator);
+
+        $material = [];
+        for($i=1; $i<=20; $i++){
+            $material[$i]["name"]           = "Material {$i}";
+            $material[$i]["category_id"]    = $i;
+            $material[$i]["user_id"]        = 2;
+        }
+        Material::insert($material);
+
+        $sample = [];
+        for($i=1; $i<=20; $i++){
+            $sample[$i]["description"]    = "This is test {$i}";
+            $sample[$i]["material_id"]    = $i;
+            $sample[$i]["user_id"]        = 2;
+        }
+        Sample::insert($sample);
 
     }
 }

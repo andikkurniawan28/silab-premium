@@ -55,5 +55,11 @@
             "route" => route("sample.index"),
         ])
 
+        @include("layouts.sidebar_list", [
+            "icon"  => "grid",
+            "title" => "analysis",
+            "route" => route("analysis.index"),
+        ])
+
     </ul>
 </aside>
