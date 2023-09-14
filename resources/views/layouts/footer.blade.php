@@ -4,7 +4,7 @@
         &copy; Copyright <strong><span>{{ ENV("APP_NAME") }}</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">{{ ENV("APP_VENDOR") }}</a>
+        Developed by <a href="https://bootstrapmade.com/">{{ ENV("APP_VENDOR") }}</a>
     </div>
 </footer>
 <!-- End Footer -->

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('device_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('consumable_id')->constrained();
+            $table->foreignId('device_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->text('description');
             $table->timestamp('created_at')->useCurrent();

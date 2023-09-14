@@ -18,4 +18,8 @@ class Sample extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function analysis(){
+        return $this->hasMany(Analysis::class);
+    }
 }

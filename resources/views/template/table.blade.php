@@ -20,7 +20,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">@yield("title")</h5>
-                        <p><a href="@yield("route-create")" class="btn btn-primary btn-sm">{{ ucfirst("create") }}</a></p>
                         <div class="table-responsive">
                             <table class="table datatable">
                                 <thead>
@@ -30,7 +29,7 @@
                                     @yield("tbody")
                                 </tbody>
                             </table>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use App\Models\Device;
 use App\Models\Method;
 use App\Models\Category;
@@ -16,6 +17,7 @@ class GlobalData extends Model
     use HasFactory;
 
     public static function run(){
+        $data["role"]       = Role::select(["id", "name"])->orderBy("id", "asc")->get();
         $data["vendor"]     = Vendor::select(["id", "name"])->orderBy("id", "asc")->get();
         $data["consumable"] = Consumable::select(["id", "name"])->orderBy("id", "asc")->get();
         $data["device"]     = Device::select(["id", "name"])->orderBy("id", "asc")->get();

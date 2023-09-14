@@ -211,6 +211,13 @@
             </li> --}}
 
             <li>
+                <a class="dropdown-item d-flex align-items-center" href="{{ route("activity_log") }}">
+                  <i class="bi bi-clock-history"></i>
+                  <span>{{ ucfirst("activity_log") }}</span>
+                </a>
+            </li>
+
+            <li>
               <a class="dropdown-item d-flex align-items-center" href="{{ route("logout") }}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
