@@ -24,8 +24,8 @@ class UserUpdateRequest extends FormRequest
         return [
             "name"      => "required",
             "username"  => "required",
-            "password"  => "required",
             "role_id"   => "required",
+            "is_active" => "required",
         ];
     }
 }

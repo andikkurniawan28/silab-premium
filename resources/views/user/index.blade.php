@@ -13,6 +13,7 @@
         <th>{{ strtoupper("id") }}</th>
         <th>{{ ucfirst("name") }}</th>
         <th>{{ ucfirst("role") }}</th>
+        <th>{{ strtoupper("is_active") }}</th>
         <th>{{ ucfirst("action") }}</th>
     </tr>
 @endsection
@@ -23,6 +24,7 @@
         <td>{{ $data->id }}</td>
         <td>{{ $data->name }}</td>
         <td>{{ $data->role->name }}</td>
+        <td>{{ $data->is_active }}</td>
         <td>
             <form action="{{ route("user.destroy", $data->id) }}" method="POST">
                 @csrf

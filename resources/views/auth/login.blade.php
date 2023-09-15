@@ -64,6 +64,8 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
+                  @include("components.alert")
+
                   <form class="row g-3 needs-validation" novalidate action="{{ route("login.process") }}" method="POST">
                     @csrf
                     @method("POST")

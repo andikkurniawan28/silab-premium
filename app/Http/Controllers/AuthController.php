@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,11 +30,21 @@ class AuthController extends Controller
         ]);
         if($attempt){
             $request->session()->regenerate();
+            $request->session()->put("date", date("Y-m-d"));
+            $request->session()->put("start", date("Y-m-d 00:00"));
+            $request->session()->put("end", date("Y-m-d 23:59"));
+            ActivityLog::write("Auth", "login", NULL);
             return redirect()->intended();
+        } else {
+            $user = User::where("username", $request->username);
+            if($user->count("id") === 0){
+                return redirect("login")->with("fail", "Your credential is not found!");
+            }
+            else {
+                return redirect("login")->with("fail", "Your account is not active. Contact your Administrator to activate it!");
+            }
         }
-        else {
-            return redirect("login")->with("error", "Username / password wrong.");
-        }
+
     }
 
     public function registerProcess(Request $request){
@@ -50,6 +61,7 @@ class AuthController extends Controller
     public function changePasswordProcess(Request $request){
         if($request->password == $request->password2){
             User::whereId(Auth()->user()->id)->update(["password" => bcrypt($request->password)]);
+            ActivityLog::write("Auth", "change password", NULL);
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
@@ -60,31 +72,18 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
+        ActivityLog::write("Auth", "logout", NULL);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect("login");
     }
 
-    // public function selectDate(){
-    //     return view("auth.select_date");
-    // }
-
-    // public function selectDateProcess(Request $request){
-    //     $time_start = $request->date." 05:00";
-    //     $time_end = date("Y-m-d H:i", strtotime($time_start . "+1 day"));
-    //     $time_yesterday = date("Y-m-d H:i", strtotime($time_start . "-1 day"));
-    //     $time_siang = date("Y-m-d H:i", strtotime($time_start . "+8 hours"));
-    //     $time_malam = date("Y-m-d H:i", strtotime($time_siang . "+8 hours"));
-    //     $time_tomorrow = date("Y-m-d H:i", strtotime($time_malam . "+8 hours"));
-    //     $request->session()->put("date", $request->date);
-    //     $request->session()->put("time_start", $time_start);
-    //     $request->session()->put("time_end", $time_end);
-    //     $request->session()->put("time_yesterday", $time_yesterday);
-    //     $request->session()->put("time_siang", $time_siang);
-    //     $request->session()->put("time_malam", $time_malam);
-    //     $request->session()->put("time_tomorrow", $time_tomorrow);
-    //     $request->session()->forget('url_requested');
-    //     return redirect()->to($request->url);
-    // }
+    public function changeDate(Request $request){
+        $request->session()->put("date", $request->date);
+        $request->session()->put("start", $request->date." 00:00");
+        $request->session()->put("end", $request->date." 23:59");
+        ActivityLog::write("Change", "date to", $request->date);
+        return redirect()->back();
+    }
 }

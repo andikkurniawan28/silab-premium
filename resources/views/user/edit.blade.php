@@ -43,6 +43,13 @@
             </div>
         </div>
 
+        @include("components.input1", [
+            "name"      => "is_active",
+            "type"      => "number",
+            "value"     => $data->is_active,
+            "modifier"  => "required",
+        ])
+
         @include("components.button-submit")
     </form>
 @endsection

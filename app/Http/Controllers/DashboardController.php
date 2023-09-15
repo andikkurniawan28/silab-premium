@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dashboard;
 use App\Models\GlobalData;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $global_data = GlobalData::run();
-        return view("dashboard", compact("global_data"));
+        $data = Dashboard::index();
+        return view("dashboard", compact("global_data", "data"));
     }
 }

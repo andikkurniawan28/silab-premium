@@ -8,6 +8,7 @@ use App\Models\ActivityLog;
 use App\Models\GlobalData;
 use App\Models\Sample;
 // use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SampleController extends Controller
 {
@@ -17,7 +18,7 @@ class SampleController extends Controller
     public function index()
     {
         $global_data = GlobalData::run();
-        $data = Sample::all();
+        $data = Sample::whereBetween("created_at", [Session::get("start"), Session::get("end")])->get();
         return view("sample.index", compact("global_data", "data"));
     }
 

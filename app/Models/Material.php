@@ -18,4 +18,8 @@ class Material extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function sample(){
+        return $this->hasMany(Sample::class);
+    }
 }

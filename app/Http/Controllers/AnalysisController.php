@@ -8,6 +8,7 @@ use App\Models\ActivityLog;
 use App\Models\GlobalData;
 use App\Models\Analysis;
 // use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AnalysisController extends Controller
 {
@@ -17,7 +18,7 @@ class AnalysisController extends Controller
     public function index()
     {
         $global_data = GlobalData::run();
-        $data = Analysis::all();
+        $data = Analysis::whereBetween("created_at", [Session::get("start"), Session::get("end")])->get();
         return view("analysis.index", compact("global_data", "data"));
     }
 
